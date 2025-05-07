@@ -1,0 +1,11 @@
+class RegisterScreen extends StatelessWidget {
+  const RegisterScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('Inscription')),
+      body: const Center(child: Text('Formulaire d\'inscription')),
+    );
+  }
+}
