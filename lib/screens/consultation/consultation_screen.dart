@@ -7,7 +7,19 @@ class ConsultationScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Mes consultations')),
-      body: const Center(child: Text('Liste des rendez-vous')),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text('Liste des rendez-vous'),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () => Navigator.pushNamed(context, '/'),
+              child: const Text('Accueil'),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

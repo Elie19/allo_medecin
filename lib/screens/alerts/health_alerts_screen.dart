@@ -7,7 +7,19 @@ class HealthAlertsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Alertes de Santé')),
-      body: const Center(child: Text('Alertes et notifications sanitaires')),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text('Alertes et notifications sanitaires'),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () => Navigator.pushNamed(context, '/'),
+              child: const Text('Accueil'),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

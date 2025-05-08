@@ -24,7 +24,19 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Accueil')),
-      body: const Center(child: Text('Contenu Accueil')),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text('Contenu Accueil'),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () => Navigator.pushNamed(context, '/'),
+              child: const Text('Accueil'),
+            ),
+          ],
+        ),
+      ),
       bottomNavigationBar: BottomNavBar(currentIndex: _selectedIndex, onTap: _onNavTap),
     );
   }

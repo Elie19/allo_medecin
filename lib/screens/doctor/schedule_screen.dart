@@ -7,7 +7,19 @@ class ScheduleScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Disponibilités')),
-      body: const Center(child: Text('Gérer les créneaux')),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text('Gérer les créneaux'),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () => Navigator.pushNamed(context, '/'),
+              child: const Text('Accueil'),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
