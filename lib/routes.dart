@@ -33,6 +33,7 @@ import 'screens/feedback/feedback_screen.dart';
 
 // Médecins
 import 'screens/doctor/dashboard_screen.dart';
+import 'screens/doctor/doctor_profile_screen.dart';
 import 'screens/doctor/patient_file_screen.dart';
 import 'screens/doctor/prescription_screen.dart';
 import 'screens/doctor/schedule_screen.dart';
@@ -72,4 +73,5 @@ final Map<String, WidgetBuilder> appRoutes = {
   '/consent': (_) => const ConsentScreen(),
   '/offline': (_) => const OfflineModeScreen(),
   '/payment': (_) => const PaymentScreen(),
+  '/doctor_profile': (_) => const DoctorProfileScreen(),
 };

@@ -1,20 +1,19 @@
 import os
 import re
 
-base_dir = "lib/screens"
+# Dossier contenant les fichiers .dart (mets ici le chemin vers lib/screens si besoin)
+BASE_DIR = "lib/screens"
 
-for subdir, _, files in os.walk(base_dir):
-    for file in files:
-        if file.endswith(".dart"):
-            filepath = os.path.join(subdir, file)
-            with open(filepath, "r", encoding="utf-8") as f:
-                content = f.read()
+# Remplacement ciblé
+def inject_navigation_buttons(file_path):
+    with open(file_path, "r", encoding="utf-8") as f:
+        content = f.read()
 
-            # Regex match pour body: const Center(child: Text('...'))
-            match = re.search(r"body:\s+const\s+Center\(child:\s+Text\('(.+?)'\)\)", content)
-            if match:
-                label = match.group(1)
-                new_body = f"""body: Center(
+    # Cherche un bloc simple : Center(child: Text('...'))
+    match = re.search(r"body: const Center\(child: Text\('(.*?)'\)\)", content)
+    if match:
+        label = match.group(1)
+        replacement = f"""body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -24,13 +23,27 @@ for subdir, _, files in os.walk(base_dir):
               onPressed: () => Navigator.pushNamed(context, '/'),
               child: const Text('Accueil'),
             ),
+            const SizedBox(height: 10),
+            ElevatedButton(
+              onPressed: () => Navigator.pushNamed(context, '/search'),
+              child: const Text('Top Docteurs'),
+            ),
+            const SizedBox(height: 10),
+            ElevatedButton(
+              onPressed: () => Navigator.pushNamed(context, '/profile'),
+              child: const Text('Profil utilisateur'),
+            ),
           ],
         ),
       )"""
-                content = content.replace(match.group(0), new_body)
+        content = content.replace(match.group(0), replacement)
 
-                with open(filepath, "w", encoding="utf-8") as f:
-                    f.write(content)
+        with open(file_path, "w", encoding="utf-8") as f:
+            f.write(content)
+        print(f"[✓] Modifié : {file_path}")
 
-                print(f"✅ Mis à jour : {filepath}")
-
+# Parcours tous les fichiers Dart
+for root, _, files in os.walk(BASE_DIR):
+    for file in files:
+        if file.endswith(".dart"):
+            inject_navigation_buttons(os.path.join(root, file))
